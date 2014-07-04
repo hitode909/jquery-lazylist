@@ -7,7 +7,7 @@
         if (prev) {
             prev.promise().done(function(res) {
                 if (!res.has_next) {
-                    d.rejext();
+                    d.reject();
                 }
             });
 
