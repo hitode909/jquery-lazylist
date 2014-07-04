@@ -1,8 +1,8 @@
 # jquery-lazylist
 
-jquery-lazylist isa a Lazy list which using jQuery Deferred.
+jquery-lazylist is a lazy list built on jQuery Deferred.
 
-This is useful to implement counter, fibonnaci function with memoze, Ajax pager, and so on.
+This is useful to implement counter, fibonacci function with memoization, Ajax pager, and so on.
 
 ## Counter
 
@@ -50,7 +50,7 @@ for (var i = 0; i <= 13; i++) {
 failed
 ```
 
-## Fibonacci with memoize
+## Fibonacci with memoization
 
 ```javascript
 var fib = new $.LazyList(function(prev) {
