@@ -76,7 +76,7 @@ for (var i = 0; i <= 10; i++) with({i: i}) {
     });
     fib = fib.next();
 }
-// re-culculate from 04
+// re-culculate from 0
 fib = fib.root();
 for (var i = 0; i <= 10; i++) with({i: i}) {
     fib.promise().done(function(v) {
