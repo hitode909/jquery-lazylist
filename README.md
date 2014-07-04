@@ -167,17 +167,17 @@ var pager = new $.LazyList(function(prev) {
 ## Usage
 ```javascript
 // get first page
-paget.resolve().done(function(page1) {
+pager.resolve().done(function(page1) {
   console.log(page1);
 });
 
 // get first page(cached)
-paget.resolve().done(function(page1) {
+pager.resolve().done(function(page1) {
   console.log(page1);
 });
 
 // get fifth page
-paget.next().next().next().next().resolve().done(function(page5) {
+pager.next().next().next().next().resolve().done(function(page5) {
   console.log(page5);
 });
 ```
