@@ -1,0 +1,33 @@
+<html>
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="../jquery-lazylist.js"></script>
+  <script>
+    var counter = new $.LazyList(function(prev) {
+        var d = $.Deferred();
+        if (prev) {
+            prev.promise().done(function(i) {
+                if (i < 10) {
+                    d.resolve(i+1);
+                } else {
+                    d.reject();
+                }
+            });
+        } else {
+            d.resolve(0);
+        }
+        return d;
+    });
+
+    for (var i = 0; i <= 13; i++) {
+        counter.promise().done(function(j) {
+            console.log(j);
+        }).fail(function() {
+            console.log('failed');
+        });
+        counter = counter.next();
+    }
+  </script>
+  <body>
+    See console
+  </body>
+</html>

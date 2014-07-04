@@ -1,0 +1,42 @@
+<html>
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="../jquery-lazylist.js"></script>
+  <script>
+    var pager = new $.LazyList(function(prev) {
+        var d = $.Deferred();
+        if (prev) {
+            prev.promise().done(function(res) {
+                if (!res.has_next) {
+                    d.rejext();
+                }
+            });
+
+            $.ajax({
+                url: '/some/api',
+                data: {
+                    until: res.until
+                }
+            }).done(function(res) {
+                d.resolve(res);
+            }).fail(function(error) {
+                d.reject(rror);
+            });
+        } else {
+            $.ajax({
+                url: '/some/api',
+            }).done(function(res) {
+                d.resolve(res);
+            }).fail(function(error) {
+                d.reject(rror);
+            });
+        }
+        return d;
+    });
+
+    
+
+  </script>
+  <body>
+    See console
+  </body>
+</html>

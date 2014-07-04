@@ -1,0 +1,40 @@
+<html>
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="../jquery-lazylist.js"></script>
+  <script>
+    var fib = new $.LazyList(function(prev) {
+        console.log('generate');
+        var dfd = $.Deferred();
+        if (prev && prev.prev()) {
+            prev.prev().promise().done(function(a) {
+                prev.promise().done(function(b) {
+                    console.log(a + ' + ' + b + ' = ' + (a+b));
+                    dfd.resolve(a + b);
+                });
+            });
+        } else if (prev) {
+            dfd.resolve(1);
+        } else {
+            dfd.resolve(0);
+        }
+        return dfd;
+    });
+    for (var i = 0; i <= 10; i++) with({i: i}) {
+        fib.promise().done(function(v) {
+            console.log('fib(' + i + ') = ' + v);
+        });
+        fib = fib.next();
+    }
+    // re-culculate from 04
+    fib = fib.root();
+    for (var i = 0; i <= 10; i++) with({i: i}) {
+        fib.promise().done(function(v) {
+            console.log('fib(' + i + ') = ' + v);
+        });
+        fib = fib.next();
+    }
+  </script>
+  <body>
+    See console
+  </body>
+</html>
